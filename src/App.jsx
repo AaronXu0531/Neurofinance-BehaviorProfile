@@ -31,6 +31,32 @@ import Dashboard from "./dashboard/Dashboard";
 
 import { ManualResultsForm } from "./ManualResultsForm";
 
+<TabsList>
+  <TabsTrigger key="tab-cog" value="cog">Cognitive Control</TabsTrigger>
+  <TabsTrigger key="tab-reward" value="reward">Reward Sensitivity</TabsTrigger>
+  <TabsTrigger key="tab-risk" value="risk">Risk Perception & Biases</TabsTrigger>
+  <TabsTrigger key="tab-dashboard" value="dashboard">Dashboard</TabsTrigger>
+</TabsList>
+
+  <TabsTrigger key="tab-manual" value="manual">
+    Manual input
+  </TabsTrigger>
+
+{/* Manual JSON input -> Dashboard */}
+<TabsContent key="content-manual" value="manual">
+  <div className="space-y-4">
+    <ManualResultsForm onLoad={(obj) => setResults(obj)} />
+    <Card>
+      <CardHeader>
+        <CardTitle>Preview</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <Dashboard results={results} />
+      </CardContent>
+    </Card>
+  </div>
+</TabsContent>
+
 export default function App() {
   const [tab, setTab] = useState("cog");
   const [modeDemo, setModeDemo] = useState(true);
