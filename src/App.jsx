@@ -28,34 +28,7 @@ import { CalibrationTask } from "./tasks/ConfidenceCalibration";
 import { AnchoringTask } from "./tasks/AnchoringRecall";
 
 import Dashboard from "./dashboard/Dashboard";
-
 import { ManualResultsForm } from "./ManualResultsForm";
-
-<TabsList>
-  <TabsTrigger key="tab-cog" value="cog">Cognitive Control</TabsTrigger>
-  <TabsTrigger key="tab-reward" value="reward">Reward Sensitivity</TabsTrigger>
-  <TabsTrigger key="tab-risk" value="risk">Risk Perception & Biases</TabsTrigger>
-  <TabsTrigger key="tab-dashboard" value="dashboard">Dashboard</TabsTrigger>
-</TabsList>
-
-  <TabsTrigger key="tab-manual" value="manual">
-    Manual input
-  </TabsTrigger>
-
-{/* Manual JSON input -> Dashboard */}
-<TabsContent key="content-manual" value="manual">
-  <div className="space-y-4">
-    <ManualResultsForm onLoad={(obj) => setResults(obj)} />
-    <Card>
-      <CardHeader>
-        <CardTitle>Preview</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Dashboard results={results} />
-      </CardContent>
-    </Card>
-  </div>
-</TabsContent>
 
 export default function App() {
   const [tab, setTab] = useState("cog");
@@ -125,11 +98,11 @@ export default function App() {
     <div className="p-6 max-w-5xl mx-auto space-y-6">
       <header className="space-y-2">
         <h1 className="text-3xl font-bold">
-          Investor Cognition & Reward–Risk Profile – Demo
+          Investor Cognition &amp; Reward–Risk Profile – Demo
         </h1>
         <p className="text-sm opacity-80">
           Cognitive control (Go/No-Go, Stroop, Framing), Reward sensitivity
-          (MID, BART, Delay), and Risk perception & biases (probability
+          (MID, BART, Delay), and Risk perception &amp; biases (probability
           weighting, calibration, anchoring).
         </p>
         <div className="flex items-center gap-3">
@@ -149,10 +122,13 @@ export default function App() {
             Reward Sensitivity
           </TabsTrigger>
           <TabsTrigger key="tab-risk" value="risk">
-            Risk Perception & Biases
+            Risk Perception &amp; Biases
           </TabsTrigger>
           <TabsTrigger key="tab-dashboard" value="dashboard">
             Dashboard
+          </TabsTrigger>
+          <TabsTrigger key="tab-manual" value="manual">
+            Manual input
           </TabsTrigger>
         </TabsList>
 
@@ -252,7 +228,9 @@ export default function App() {
               <BART
                 key={bartKey}
                 modeDemo={modeDemo}
-                onFinish={(r) => setResults((prev) => ({ ...prev, bart: r }))}
+                onFinish={(r) =>
+                  setResults((prev) => ({ ...prev, bart: r }))
+                }
               />
 
               {/* Delay Discounting */}
@@ -282,7 +260,7 @@ export default function App() {
         <TabsContent key="content-risk" value="risk">
           <Card>
             <CardHeader>
-              <CardTitle>Risk Perception & Bias Tasks</CardTitle>
+              <CardTitle>Risk Perception &amp; Bias Tasks</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* Probability weighting */}
@@ -343,7 +321,23 @@ export default function App() {
         <TabsContent key="content-dashboard" value="dashboard">
           <Dashboard results={results} />
         </TabsContent>
+
+        {/* Manual JSON input -> Dashboard */}
+        <TabsContent key="content-manual" value="manual">
+          <div className="space-y-4">
+            <ManualResultsForm onLoad={(obj) => setResults(obj)} />
+            <Card>
+              <CardHeader>
+                <CardTitle>Preview</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Dashboard results={results} />
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
       </Tabs>
     </div>
   );
 }
+
