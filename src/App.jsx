@@ -29,6 +29,7 @@ import { AnchoringTask } from "./tasks/AnchoringRecall";
 
 import Dashboard from "./dashboard/Dashboard";
 
+import { ManualResultsForm } from "./ManualResultsForm";
 
 export default function App() {
   const [tab, setTab] = useState("cog");
